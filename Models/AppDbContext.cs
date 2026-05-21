@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Logistica_y_transporte.Models
 {
     //es para prueba
+    //segunda prueba
     public class AppDbContext:
         IdentityDbContext<IdentityUser>
     {
