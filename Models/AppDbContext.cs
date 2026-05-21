@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace Logistica_y_transporte.Models
 {
-
+    //es para prueba
     public class AppDbContext:
         IdentityDbContext<IdentityUser>
     {
