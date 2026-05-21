@@ -22,4 +22,6 @@ namespace Logistica_y_transporte.Models
         public string piloto { get; set; } = string.Empty;
     }
 }
-//NUEVO PRUEBAEE
+
+
+//PRUEBA PARA VER SI SE SUBE EL PROYECTO A GITHUB DESDE VISUAL STUDIO 2022
