@@ -25,3 +25,4 @@ namespace Logistica_y_transporte.Models
 
 
 //PRUEBA PARA VER SI SE SUBE EL PROYECTO A GITHUB DESDE VISUAL STUDIO 2022
+//prueba para ver si se sube el proyecto a github desde visual studio 2022 333
