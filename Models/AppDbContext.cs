@@ -4,14 +4,16 @@ using Microsoft.EntityFrameworkCore;
 namespace Logistica_y_transporte.Models
 {
 
-    public class AppDbContext:
+    public class AppDbContext :
         IdentityDbContext<IdentityUser>
     {
-        public AppDbContext 
+        public AppDbContext
             (DbContextOptions<AppDbContext> options)
             : base(options)
         {
 
         }
+
+        public DbSet<Persona> Personas { get; set; }
     }
 }

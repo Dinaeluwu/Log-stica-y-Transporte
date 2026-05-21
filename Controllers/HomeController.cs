@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Logistica_y_transporte.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Logistica_y_transporte.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
