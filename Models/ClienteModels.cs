@@ -19,6 +19,5 @@ namespace Logistica_y_transporte.Models
 }
 
 //PRUEBA DE CAMBIO EN GITHUB 2026 HORA 10:57.
-//segunda prueba de cambio en github 2026 HORA 11:00.
-
-// prueba de cambios
+//Prime cambio.
+//Segundo cambio.
