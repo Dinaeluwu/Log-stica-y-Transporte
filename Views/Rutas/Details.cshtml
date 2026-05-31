@@ -1,0 +1,30 @@
+@model Logistica_y_transporte.Models.Ruta
+@{
+    ViewData["Title"] = "Detalle de ruta";
+    ViewData["PageTitle"] = "Detalle de ruta";
+    ViewData["PageSubtitle"] = Model?.zona;
+    ViewData["PageIcon"] = "bi-signpost-fill";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card module-card">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.id_ruta)</dt>
+                    <dd class="col-sm-8"><span class="badge text-bg-primary">#@Model?.id_ruta</span></dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.zona)</dt>
+                    <dd class="col-sm-8 fw-medium">@Model?.zona</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.piloto)</dt>
+                    <dd class="col-sm-8">@Model?.piloto</dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-white d-flex flex-wrap gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.id_ruta" class="btn btn-primary btn-sm"><i class="bi bi-pencil me-1"></i>Editar</a>
+                <partial name="_BackToList" />
+            </div>
+        </div>
+    </div>
+</div>

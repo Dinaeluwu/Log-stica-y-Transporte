@@ -1,0 +1,63 @@
+@model IEnumerable<Logistica_y_transporte.Models.Factura>
+@{
+    ViewData["Title"] = "Facturación";
+    ViewData["PageTitle"] = "Facturación";
+    ViewData["PageSubtitle"] = "Facturas por cliente y envío";
+    ViewData["PageIcon"] = "bi-receipt-cutoff";
+    ViewData["ShowCreate"] = true;
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="card module-card">
+    <div class="card-body p-0">
+        @if (!Model.Any())
+        {
+            <div class="empty-state text-center py-5 m-4">
+                <i class="bi bi-receipt display-4 text-muted"></i>
+                <p class="text-muted mt-3 mb-3">No hay facturas registradas.</p>
+                <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Emitir primera factura</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-module table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Cliente)</th>
+                            <th>@Html.DisplayNameFor(model => model.Envio)</th>
+                            <th>@Html.DisplayNameFor(model => model.monto)</th>
+                            <th>@Html.DisplayNameFor(model => model.fechas)</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-medium">@(item.Cliente?.nombre ?? "—")</td>
+                                <td>
+                                    @if (item.Envio != null)
+                                    {
+                                        <small class="text-muted">@item.Envio.fecha_envio.ToString("dd/MM/yyyy")</small>
+                                        <span class="d-block">@(item.Envio.estado ?? "—")</span>
+                                    }
+                                    else
+                                    {
+                                        <span>—</span>
+                                    }
+                                </td>
+                                <td><span class="fw-semibold text-success">@item.monto.ToString("C2")</span></td>
+                                <td>@item.fechas.ToString("dd/MM/yyyy")</td>
+                                <td class="text-end">
+                                    <partial name="_CrudActions" view-data='new ViewDataDictionary(ViewData) { { "ItemId", item.id_factura } }' />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,39 @@
+@model Logistica_y_transporte.Models.Factura
+@{
+    ViewData["Title"] = "Eliminar factura";
+    ViewData["PageTitle"] = "Eliminar factura";
+    ViewData["PageSubtitle"] = "Esta acción no se puede deshacer";
+    ViewData["PageIcon"] = "bi-exclamation-triangle-fill";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <div>¿Confirma que desea eliminar esta factura?</div>
+        </div>
+        <div class="card module-card border-danger border-opacity-25">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cliente)</dt>
+                    <dd class="col-sm-8">@(Model?.Cliente?.nombre ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Envio)</dt>
+                    <dd class="col-sm-8">
+                        @(Model?.Envio != null ? $"{Model.Envio.fecha_envio:dd/MM/yyyy} — {Model.Envio.estado}" : "—")
+                    </dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.monto)</dt>
+                    <dd class="col-sm-8">@Model?.monto.ToString("C2")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.fechas)</dt>
+                    <dd class="col-sm-8">@Model?.fechas.ToString("dd/MM/yyyy")</dd>
+                </dl>
+                <form asp-action="Delete" class="mt-4 d-flex flex-wrap gap-2">
+                    <input type="hidden" asp-for="id_factura" />
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Eliminar</button>
+                    <partial name="_BackToList" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

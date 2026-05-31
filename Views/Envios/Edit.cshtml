@@ -1,0 +1,63 @@
+@model Logistica_y_transporte.Models.Envio
+@{
+    ViewData["Title"] = "Editar envío";
+    ViewData["PageTitle"] = "Editar envío";
+    ViewData["PageSubtitle"] = "Actualice el seguimiento del envío";
+    ViewData["PageIcon"] = "bi-pencil-square";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card module-card">
+            <div class="card-header"><i class="bi bi-truck me-2 text-primary"></i>Datos del envío</div>
+            <div class="card-body p-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2" role="alert"></div>
+                    <input type="hidden" asp-for="id_envio" />
+                    <div class="mb-3">
+                        <label asp-for="id_paquete" class="form-label"></label>
+                        <select asp-for="id_paquete" class="form-select" asp-items="ViewBag.id_paquete">
+                            <option value="">— Sin paquete —</option>
+                        </select>
+                        <span asp-validation-for="id_paquete" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="id_ruta" class="form-label"></label>
+                        <select asp-for="id_ruta" class="form-select" asp-items="ViewBag.id_ruta">
+                            <option value="">— Sin ruta —</option>
+                        </select>
+                        <span asp-validation-for="id_ruta" class="text-danger small"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="fecha_envio" class="form-label"></label>
+                            <input asp-for="fecha_envio" class="form-control" type="date" />
+                            <span asp-validation-for="fecha_envio" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="estado" class="form-label"></label>
+                            <input asp-for="estado" class="form-control" list="estados-envio" />
+                            <datalist id="estados-envio">
+                                <option value="Pendiente"></option>
+                                <option value="En tránsito"></option>
+                                <option value="Entregado"></option>
+                                <option value="Cancelado"></option>
+                            </datalist>
+                            <span asp-validation-for="estado" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Guardar cambios</button>
+                        <partial name="_BackToList" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,37 @@
+@model Logistica_y_transporte.Models.Envio
+@{
+    ViewData["Title"] = "Eliminar envío";
+    ViewData["PageTitle"] = "Eliminar envío";
+    ViewData["PageSubtitle"] = "Esta acción no se puede deshacer";
+    ViewData["PageIcon"] = "bi-exclamation-triangle-fill";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <div>¿Confirma que desea eliminar este envío?</div>
+        </div>
+        <div class="card module-card border-danger border-opacity-25">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Paquete)</dt>
+                    <dd class="col-sm-8">@(Model?.Paquete?.descripcion ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Ruta)</dt>
+                    <dd class="col-sm-8">@(Model?.Ruta?.zona ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.fecha_envio)</dt>
+                    <dd class="col-sm-8">@Model?.fecha_envio.ToString("dd/MM/yyyy")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.estado)</dt>
+                    <dd class="col-sm-8">@(Model?.estado ?? "—")</dd>
+                </dl>
+                <form asp-action="Delete" class="mt-4 d-flex flex-wrap gap-2">
+                    <input type="hidden" asp-for="id_envio" />
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Eliminar</button>
+                    <partial name="_BackToList" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

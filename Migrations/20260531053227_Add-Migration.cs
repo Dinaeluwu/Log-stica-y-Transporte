@@ -5,7 +5,7 @@
 namespace Logistica_y_transporte.Migrations
 {
     /// <inheritdoc />
-    public partial class ModUser : Migration
+    public partial class AddMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,8 +14,27 @@ namespace Logistica_y_transporte.Migrations
                 name: "FK_Personas_AspNetUsers_UserId",
                 table: "Personas");
 
-            migrationBuilder.DropColumn(
-                name: "UsuarioId",
+            migrationBuilder.AlterColumn<string>(
+                name: "UserId",
+                table: "Personas",
+                type: "nvarchar(450)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(450)");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Personas_AspNetUsers_UserId",
+                table: "Personas",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Personas_AspNetUsers_UserId",
                 table: "Personas");
 
             migrationBuilder.AlterColumn<string>(
@@ -35,36 +54,6 @@ namespace Logistica_y_transporte.Migrations
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Personas_AspNetUsers_UserId",
-                table: "Personas");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "Personas",
-                type: "nvarchar(450)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(450)");
-
-            migrationBuilder.AddColumn<int>(
-                name: "UsuarioId",
-                table: "Personas",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Personas_AspNetUsers_UserId",
-                table: "Personas",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id");
         }
     }
 }

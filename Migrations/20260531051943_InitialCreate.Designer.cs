@@ -4,6 +4,7 @@ using Logistica_y_transporte.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Logistica_y_transporte.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260531051943_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,9 @@ namespace Logistica_y_transporte.Migrations
                         .HasColumnName("Id_Cliente");
 
                     b.Property<string>("nit")
-                        .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("nombre")
-                        .IsRequired()
-                        .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
                     b.HasKey("Id_Cliente");
@@ -51,7 +51,6 @@ namespace Logistica_y_transporte.Migrations
                         .HasColumnName("id_envio");
 
                     b.Property<string>("estado")
-                        .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("fecha_envio")
@@ -112,7 +111,6 @@ namespace Logistica_y_transporte.Migrations
                         .HasColumnName("ID_paquete");
 
                     b.Property<string>("descripcion")
-                        .HasMaxLength(500)
                         .HasColumnType("text");
 
                     b.Property<Guid>("id_cliente")
@@ -136,19 +134,16 @@ namespace Logistica_y_transporte.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Apellido")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Inactivo")
                         .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -172,12 +167,10 @@ namespace Logistica_y_transporte.Migrations
 
                     b.Property<string>("piloto")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("zona")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("id_ruta");

@@ -13,7 +13,7 @@ namespace Logistica_y_transporte.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260419231116_moduser")]
-    partial class moduser
+    partial class ModUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

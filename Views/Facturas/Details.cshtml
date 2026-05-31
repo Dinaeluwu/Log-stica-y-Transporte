@@ -1,0 +1,34 @@
+@model Logistica_y_transporte.Models.Factura
+@{
+    ViewData["Title"] = "Detalle de factura";
+    ViewData["PageTitle"] = "Detalle de factura";
+    ViewData["PageSubtitle"] = Model?.fechas.ToString("dd/MM/yyyy");
+    ViewData["PageIcon"] = "bi-receipt-cutoff";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card module-card">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cliente)</dt>
+                    <dd class="col-sm-8 fw-medium">@(Model?.Cliente?.nombre ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Envio)</dt>
+                    <dd class="col-sm-8">
+                        @(Model?.Envio != null ? $"{Model.Envio.fecha_envio:dd/MM/yyyy} — {Model.Envio.estado}" : "—")
+                    </dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.monto)</dt>
+                    <dd class="col-sm-8"><span class="fs-5 fw-semibold text-success">@Model?.monto.ToString("C2")</span></dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.fechas)</dt>
+                    <dd class="col-sm-8">@Model?.fechas.ToString("dd/MM/yyyy")</dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-white d-flex flex-wrap gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.id_factura" class="btn btn-primary btn-sm"><i class="bi bi-pencil me-1"></i>Editar</a>
+                <partial name="_BackToList" />
+            </div>
+        </div>
+    </div>
+</div>

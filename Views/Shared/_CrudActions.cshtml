@@ -1,0 +1,15 @@
+@{
+    var itemId = ViewData["ItemId"];
+}
+
+<div class="btn-group btn-group-sm actions-col" role="group" aria-label="Acciones">
+    <a asp-action="Details" asp-route-id="@itemId" class="btn btn-outline-secondary" title="Ver detalle">
+        <i class="bi bi-eye"></i>
+    </a>
+    <a asp-action="Edit" asp-route-id="@itemId" class="btn btn-outline-primary" title="Editar">
+        <i class="bi bi-pencil"></i>
+    </a>
+    <a asp-action="Delete" asp-route-id="@itemId" class="btn btn-outline-danger" title="Eliminar">
+        <i class="bi bi-trash"></i>
+    </a>
+</div>

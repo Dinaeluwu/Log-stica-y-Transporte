@@ -1,0 +1,58 @@
+.module-page-header {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #084298 100%);
+    box-shadow: 0 0.5rem 1.25rem rgba(13, 110, 253, 0.25);
+}
+
+.module-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 1.35rem;
+    color: #fff;
+}
+
+.module-card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.06);
+}
+
+.module-card .card-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    font-weight: 600;
+}
+
+.table-module thead th {
+    background: #f8f9fa;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6c757d;
+    border-bottom-width: 2px;
+    white-space: nowrap;
+}
+
+.table-module tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.04);
+}
+
+.table-module .actions-col {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.detail-list dt {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.empty-state {
+    border: 2px dashed #dee2e6;
+    border-radius: 0.75rem;
+    background: #fafbfc;
+}

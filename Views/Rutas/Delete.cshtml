@@ -1,0 +1,33 @@
+@model Logistica_y_transporte.Models.Ruta
+@{
+    ViewData["Title"] = "Eliminar ruta";
+    ViewData["PageTitle"] = "Eliminar ruta";
+    ViewData["PageSubtitle"] = "Esta acción no se puede deshacer";
+    ViewData["PageIcon"] = "bi-exclamation-triangle-fill";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+            <div>¿Confirma que desea eliminar esta ruta?</div>
+        </div>
+        <div class="card module-card border-danger border-opacity-25">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.zona)</dt>
+                    <dd class="col-sm-8">@Model?.zona</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.piloto)</dt>
+                    <dd class="col-sm-8">@Model?.piloto</dd>
+                </dl>
+                <form asp-action="Delete" class="mt-4 d-flex flex-wrap gap-2">
+                    <input type="hidden" asp-for="id_ruta" />
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Eliminar</button>
+                    <partial name="_BackToList" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

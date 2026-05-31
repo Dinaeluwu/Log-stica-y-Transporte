@@ -1,0 +1,51 @@
+@model IEnumerable<Logistica_y_transporte.Models.Ruta>
+@{
+    ViewData["Title"] = "Rutas";
+    ViewData["PageTitle"] = "Gestión de rutas";
+    ViewData["PageSubtitle"] = "Zonas de cobertura y pilotos asignados";
+    ViewData["PageIcon"] = "bi-signpost-split-fill";
+    ViewData["ShowCreate"] = true;
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="card module-card">
+    <div class="card-body p-0">
+        @if (!Model.Any())
+        {
+            <div class="empty-state text-center py-5 m-4">
+                <i class="bi bi-map display-4 text-muted"></i>
+                <p class="text-muted mt-3 mb-3">No hay rutas registradas.</p>
+                <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Registrar primera ruta</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-module table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.id_ruta)</th>
+                            <th>@Html.DisplayNameFor(model => model.zona)</th>
+                            <th>@Html.DisplayNameFor(model => model.piloto)</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><span class="badge text-bg-primary">#@item.id_ruta</span></td>
+                                <td class="fw-medium">@item.zona</td>
+                                <td><i class="bi bi-person-badge text-muted me-1"></i>@item.piloto</td>
+                                <td class="text-end">
+                                    <partial name="_CrudActions" view-data='new ViewDataDictionary(ViewData) { { "ItemId", item.id_ruta } }' />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

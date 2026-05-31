@@ -1,0 +1,41 @@
+@model Logistica_y_transporte.Models.Envio
+@{
+    ViewData["Title"] = "Detalle de envío";
+    ViewData["PageTitle"] = "Detalle de envío";
+    ViewData["PageSubtitle"] = Model?.estado;
+    ViewData["PageIcon"] = "bi-truck-front-fill";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card module-card">
+            <div class="card-body p-4">
+                <dl class="row detail-list mb-0">
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Paquete)</dt>
+                    <dd class="col-sm-8">@(Model?.Paquete?.descripcion ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Ruta)</dt>
+                    <dd class="col-sm-8">@(Model?.Ruta?.zona ?? "—")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.fecha_envio)</dt>
+                    <dd class="col-sm-8">@Model?.fecha_envio.ToString("dd/MM/yyyy")</dd>
+                    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.estado)</dt>
+                    <dd class="col-sm-8">
+                        @if (!string.IsNullOrWhiteSpace(Model?.estado))
+                        {
+                            <span class="badge text-bg-info text-dark">@Model.estado</span>
+                        }
+                        else
+                        {
+                            <span>—</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-white d-flex flex-wrap gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.id_envio" class="btn btn-primary btn-sm"><i class="bi bi-pencil me-1"></i>Editar</a>
+                <partial name="_BackToList" />
+            </div>
+        </div>
+    </div>
+</div>

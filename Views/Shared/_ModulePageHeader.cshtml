@@ -1,0 +1,27 @@
+@{
+    var title = ViewData["PageTitle"] as string ?? ViewData["Title"]?.ToString() ?? "Módulo";
+    var subtitle = ViewData["PageSubtitle"] as string;
+    var icon = ViewData["PageIcon"] as string ?? "bi-grid";
+    var showCreate = ViewData["ShowCreate"] as bool? ?? false;
+}
+
+<div class="module-page-header rounded-3 p-4 mb-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <span class="module-icon-wrap"><i class="bi @icon"></i></span>
+            <div>
+                <h1 class="h3 mb-0 text-white fw-semibold">@title</h1>
+                @if (!string.IsNullOrWhiteSpace(subtitle))
+                {
+                    <p class="mb-0 small text-white text-opacity-75">@subtitle</p>
+                }
+            </div>
+        </div>
+        @if (showCreate)
+        {
+            <a asp-action="Create" class="btn btn-light btn-sm fw-semibold shadow-sm">
+                <i class="bi bi-plus-lg me-1"></i>Nuevo registro
+            </a>
+        }
+    </div>
+</div>

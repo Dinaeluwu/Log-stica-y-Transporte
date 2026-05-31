@@ -1,0 +1,56 @@
+@model Logistica_y_transporte.Models.Factura
+@{
+    ViewData["Title"] = "Editar factura";
+    ViewData["PageTitle"] = "Editar factura";
+    ViewData["PageSubtitle"] = "Actualice monto o fechas";
+    ViewData["PageIcon"] = "bi-pencil-square";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card module-card">
+            <div class="card-header"><i class="bi bi-receipt me-2 text-primary"></i>Datos de la factura</div>
+            <div class="card-body p-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2" role="alert"></div>
+                    <input type="hidden" asp-for="id_factura" />
+                    <div class="mb-3">
+                        <label asp-for="id_cliente" class="form-label"></label>
+                        <select asp-for="id_cliente" class="form-select" asp-items="ViewBag.id_cliente"></select>
+                        <span asp-validation-for="id_cliente" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="id_envio" class="form-label"></label>
+                        <select asp-for="id_envio" class="form-select" asp-items="ViewBag.id_envio"></select>
+                        <span asp-validation-for="id_envio" class="text-danger small"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="monto" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text">Q</span>
+                                <input asp-for="monto" class="form-control" />
+                            </div>
+                            <span asp-validation-for="monto" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="fechas" class="form-label"></label>
+                            <input asp-for="fechas" class="form-control" type="date" />
+                            <span asp-validation-for="fechas" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Guardar cambios</button>
+                        <partial name="_BackToList" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

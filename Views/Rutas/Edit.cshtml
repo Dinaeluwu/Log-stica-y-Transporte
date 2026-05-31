@@ -1,0 +1,41 @@
+@model Logistica_y_transporte.Models.Ruta
+@{
+    ViewData["Title"] = "Editar ruta";
+    ViewData["PageTitle"] = "Editar ruta";
+    ViewData["PageSubtitle"] = $"Ruta #{Model?.id_ruta}";
+    ViewData["PageIcon"] = "bi-pencil-square";
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card module-card">
+            <div class="card-header"><i class="bi bi-signpost-2 me-2 text-primary"></i>Datos de la ruta</div>
+            <div class="card-body p-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2" role="alert"></div>
+                    <input type="hidden" asp-for="id_ruta" />
+                    <div class="mb-3">
+                        <label asp-for="zona" class="form-label"></label>
+                        <input asp-for="zona" class="form-control" />
+                        <span asp-validation-for="zona" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="piloto" class="form-label"></label>
+                        <input asp-for="piloto" class="form-control" />
+                        <span asp-validation-for="piloto" class="text-danger small"></span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Guardar cambios</button>
+                        <partial name="_BackToList" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

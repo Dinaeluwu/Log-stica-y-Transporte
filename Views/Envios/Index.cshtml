@@ -1,0 +1,62 @@
+@model IEnumerable<Logistica_y_transporte.Models.Envio>
+@{
+    ViewData["Title"] = "Envíos";
+    ViewData["PageTitle"] = "Gestión de envíos";
+    ViewData["PageSubtitle"] = "Seguimiento de paquetes, rutas y estados";
+    ViewData["PageIcon"] = "bi-truck";
+    ViewData["ShowCreate"] = true;
+}
+
+<partial name="_ModulePageHeader" />
+
+<div class="card module-card">
+    <div class="card-body p-0">
+        @if (!Model.Any())
+        {
+            <div class="empty-state text-center py-5 m-4">
+                <i class="bi bi-truck display-4 text-muted"></i>
+                <p class="text-muted mt-3 mb-3">No hay envíos registrados.</p>
+                <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Registrar primer envío</a>
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-module table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Paquete)</th>
+                            <th>@Html.DisplayNameFor(model => model.Ruta)</th>
+                            <th>@Html.DisplayNameFor(model => model.fecha_envio)</th>
+                            <th>@Html.DisplayNameFor(model => model.estado)</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(item.Paquete?.descripcion ?? "—")</td>
+                                <td>@(item.Ruta?.zona ?? "—")</td>
+                                <td>@item.fecha_envio.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (!string.IsNullOrWhiteSpace(item.estado))
+                                    {
+                                        <span class="badge text-bg-info text-dark">@item.estado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">—</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <partial name="_CrudActions" view-data='new ViewDataDictionary(ViewData) { { "ItemId", item.id_envio } }' />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
